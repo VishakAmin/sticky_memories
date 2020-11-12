@@ -6,7 +6,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
-const Post = ({ post }) => {
+const Post = ({ setCurrentId, post }) => {
+    const handleChange = () => {
+        setCurrentId = post._id
+        console.log(setCurrentId);
+    }
 
     const classes = useStyles()
     return (
@@ -21,7 +25,7 @@ const Post = ({ post }) => {
                 <Button style={{
                     color:
                         "white"
-                }} size="small" onClick={() => { }} >
+                }} size="small" onClick={handleChange} >
                     <MoreHorizIcon fontSize="default" />
                 </Button>
 
