@@ -1,31 +1,43 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { deepPurple } from "@material-ui/core/colors";
+import { makeStyles } from '@material-ui/core/styles';
+import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
+    appBar: {
+        borderRadius: 15,
+        margin: '30px 0',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        padding: theme.spacing(2),
+        padding: '10px 50px',
     },
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-        },
+    heading: {
+        color: 'rgba(0,183,255, 1)',
+        textDecoration: 'none',
     },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+    image: {
+        marginLeft: '15px',
     },
-    form: {
-        width: '100%',
-        marginTop: theme.spacing(3),
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '400px',
     },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
+    profile: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '400px',
     },
-    googleButton: {
-        marginBottom: theme.spacing(2),
+    userName: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    brandContainer: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    purple: {
+        color: theme.palette.getContrastText(deepPurple[500]),
+        backgroundColor: deepPurple[500],
     },
 }));
