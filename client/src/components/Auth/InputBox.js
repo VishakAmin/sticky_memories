@@ -7,8 +7,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 
-export default function InputBox({ name, handleChange, label, half, autoFocus, type, handleShowPassword }) {
-    console.log("Input 1");
+const InputBox = ({ name, handleChange, label, half, autoFocus, type, handleShowPassword }) => {
+    // console.log(name);
+    // console.log(label, "dsdsa", handleChange, half, type, autoFocus, handleShowPassword);
 
     return (
         <Grid item xs={12} sm={half ? 6 : 12}>
@@ -18,20 +19,22 @@ export default function InputBox({ name, handleChange, label, half, autoFocus, t
                 onChange={handleChange}
                 variant="outlined"
                 required
+                fullWidth
                 label={label}
                 autoFocus={autoFocus}
                 type={type}
-                fullWidth
-                InputProps={name === 'password' && {
+                InputBoxProps={name === 'password' ? {
                     endAdornment: (
                         <InputAdornment position="end">
                             <IconButton onClick={handleShowPassword}>
                                 {type === 'password' ? <Visibility /> : <VisibilityOff />}
                             </IconButton>
                         </InputAdornment>
-                    )
-                }}
+                    ),
+                } : null}
             />
         </Grid>
     )
 }
+
+export default InputBox;
