@@ -1,13 +1,13 @@
 import React from 'react'
 import { TextField, Grid, IconButton } from "@material-ui/core";
-import { Visibility } from '@material-ui/icons/Visibility';
-import { VisibilityOff } from '@material-ui/icons/VisibilityOff';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 
 
-const InputBox = ({ name, handleChange, label, half, autoFocus, type, handleShowPassword }) => {
+const Input = ({ name, handleChange, label, half, autoFocus, type, handleShowPassword }) => {
     // console.log(name);
     // console.log(label, "dsdsa", handleChange, half, type, autoFocus, handleShowPassword);
 
@@ -23,7 +23,7 @@ const InputBox = ({ name, handleChange, label, half, autoFocus, type, handleShow
                 label={label}
                 autoFocus={autoFocus}
                 type={type}
-                InputBoxProps={name === 'password' ? {
+                InputProps={name === 'password' ? {
                     endAdornment: (
                         <InputAdornment position="end">
                             <IconButton onClick={handleShowPassword}>
@@ -37,4 +37,4 @@ const InputBox = ({ name, handleChange, label, half, autoFocus, type, handleShow
     )
 }
 
-export default InputBox;
+export default Input;

@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@material-ui/core";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
-import InputBox from './InputBox';
+import Input from './Input';
 import { GoogleLogin } from 'react-google-login';
 import Icon from './Icon';
+import { signin, signup } from '../../actions/auth'
 
+
+const intialState = { firstName: "", lastName: "", email: "", password: "", confirmPassword: "" }
 const Auth = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const classes = useStyles();
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const handleSubmit = () => {
+    const [formData, setFormData] = useState(intialState)
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (isSignup) {
+            dispatch(signup(formData, history))
+
+        } else {
+            dispatch(signin(formData, history))
+        }
     }
-    const handleChange = () => {
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
 
     }
 
@@ -24,7 +39,7 @@ const Auth = () => {
 
     const switchMode = () => {
         setIsSignup((prev) => !prev)
-        handleShowPassword(false);
+        setShowPassword(false);
     }
 
     const googleSuccess = async (res) => {
@@ -34,6 +49,7 @@ const Auth = () => {
 
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
+            history.push('/')
         }
         catch (error) {
             console.log(error);
@@ -61,15 +77,15 @@ const Auth = () => {
                             {
                                 isSignup && (
                                     <>
-                                        <InputBox name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-                                        <InputBox name="lastName" label="Last Name" handleChange={handleChange} half />
+                                        <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                                        <Input name="lastName" label="Last Name" handleChange={handleChange} half />
                                     </>
                                 )
                             }
 
-                            <InputBox name="email" label="Email Address" handleChange={handleChange} autoFocus type="email" />
-                            <InputBox name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-                            {isSignup && <InputBox name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
+                            <Input name="email" label="Email Address" handleChange={handleChange} autoFocus type="email" />
+                            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                            {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
                         </Grid>
 
 
